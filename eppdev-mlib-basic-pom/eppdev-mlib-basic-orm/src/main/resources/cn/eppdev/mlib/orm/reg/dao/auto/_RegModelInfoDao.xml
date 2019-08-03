@@ -1,0 +1,169 @@
+<!--
+     reg_model_info对应的基础Mapper文件，请勿修改，代码生成时会自动进行覆盖
+     由EPPDEV-JEE自动创建
+-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.eppdev.mlib.orm.reg.dao.auto._RegModelInfoDao">
+    <sql id="columns">
+        a.id as id,
+        a.model_id as modelId,
+        a.model_type as modelType,
+        a.model_content as modelContent,
+        a.model_weight as modelWeight,
+        a.create_date as createDate,
+        a.update_date as updateDate,
+        a.create_by as createBy,
+        a.update_by as updateBy,
+        a.remarks as remarks,
+        a.del_flag as delFlag,
+    </sql>
+
+    <insert id="insert" parameterType="cn.eppdev.mlib.orm.reg.entity.RegModelInfo">
+        insert into reg_model_info(
+        <trim suffixOverrides=",">
+            id,
+            model_id,
+            model_type,
+            model_content,
+            model_weight,
+            create_date,
+            update_date,
+            create_by,
+            update_by,
+            remarks,
+            del_flag,
+        </trim>
+        )
+        values(
+        <trim suffixOverrides=",">
+            #{id},
+            #{modelId},
+            #{modelType},
+            #{modelContent},
+            #{modelWeight},
+            #{createDate},
+            #{updateDate},
+            #{createBy},
+            #{updateBy},
+            #{remarks},
+            #{delFlag},
+        </trim>
+        )
+    </insert>
+
+    <delete id="delete">
+        update reg_model_info a
+        <set>
+            a.del_flag=1,
+            <if test="updateDate != null">a.update_date=#{updateDate}, </if>
+            <if test="updateBy != null and updateBy != ''">a.update_by = #{updateBy}, </if>
+        </set>
+        <where>
+            and a.id=#{id}
+                and a.del_flag = 0
+        </where>
+    </delete>
+
+    <delete id="deleteBy" parameterType="cn.eppdev.mlib.orm.reg.param.RegModelInfoParam">
+        update reg_model_info a
+        <set>
+            a.del_flag=1,
+            <if test="updateDate != null">a.update_date=#{updateDate}, </if>
+            <if test="updateBy != null and updateBy != ''">a.update_by = #{updateBy}, </if>
+        </set>
+        <where>
+            <if test="id != null and id != ''">and a.id=#{id}</if>
+            <if test="_inIdList != null and _inIdList.length > 0">
+                and a.id in
+                <foreach collection="_inIdList" item="_item" separator="," open="(" close=")">
+                    #{_item}
+                </foreach>
+            </if>
+            <if test="modelId != null and modelId != ''">and a.model_id=#{modelId}</if>
+            <if test="createBy != null and createBy != ''">and a.create_by=#{createBy}</if>
+            <if test="updateBy != null and updateBy != ''">and a.update_by=#{updateBy}</if>
+            <if test="delFlag != null">and a.del_flag=#{delFlag}</if>
+                and a.del_flag = 0
+        </where>
+    </delete>
+
+    <update id="update" parameterType="cn.eppdev.mlib.orm.reg.entity.RegModelInfo">
+        update reg_model_info a
+        <set>
+            <if test="id != null and id != ''">a.id = #{id},</if>
+            <if test="modelId != null and modelId != ''">a.model_id = #{modelId},</if>
+            <if test="modelType != null and modelType != ''">a.model_type = #{modelType},</if>
+            <if test="modelContent != null and modelContent != ''">a.model_content = #{modelContent},</if>
+            <if test="modelWeight != null">a.model_weight = #{modelWeight},</if>
+            <if test="createDate != null">a.create_date = #{createDate},</if>
+            <if test="updateDate != null">a.update_date = #{updateDate},</if>
+            <if test="createBy != null and createBy != ''">a.create_by = #{createBy},</if>
+            <if test="updateBy != null and updateBy != ''">a.update_by = #{updateBy},</if>
+            <if test="remarks != null and remarks != ''">a.remarks = #{remarks},</if>
+            <if test="delFlag != null">a.del_flag = #{delFlag},</if>
+        </set>
+        <where>
+        and a.id=#{id}
+        </where>
+    </update>
+
+
+    <select id="get" resultType="cn.eppdev.mlib.orm.reg.entity.RegModelInfo">
+        select
+        <trim suffixOverrides=",">
+            <include refid="columns"/>
+            <include refid="cn.eppdev.mlib.orm.reg.dao.RegModelInfoDao.customRefColumns"/>
+        </trim>
+        from reg_model_info a
+        <include refid="cn.eppdev.mlib.orm.reg.dao.RegModelInfoDao.customRefJoin"/>
+        <where>
+            and a.id=#{id}
+        </where>
+    </select>
+
+
+    <select id="list" resultType="cn.eppdev.mlib.orm.reg.entity.RegModelInfo">
+        select
+        <trim suffixOverrides=",">
+            <include refid="columns"/>
+            <include refid="cn.eppdev.mlib.orm.reg.dao.RegModelInfoDao.customRefColumns"/>
+        </trim>
+        from reg_model_info a
+        <include refid="cn.eppdev.mlib.orm.reg.dao.RegModelInfoDao.customRefJoin"/>
+        <where>
+            <if test="id != null and id != ''">and a.id=#{id}</if>
+            <if test="_inIdList != null and _inIdList.length > 0">
+                and a.id in
+                <foreach collection="_inIdList" item="_item" separator="," open="(" close=")">
+                    #{_item}
+                </foreach>
+            </if>
+            <if test="modelId != null and modelId != ''">and a.model_id=#{modelId}</if>
+            <if test="createBy != null and createBy != ''">and a.create_by=#{createBy}</if>
+            <if test="updateBy != null and updateBy != ''">and a.update_by=#{updateBy}</if>
+            <if test="delFlag != null">and a.del_flag=#{delFlag}</if>
+                and a.del_flag = 0
+            <if test="_customWhere != null and _customWhere != ''">${_customWhere}</if>
+        </where>
+        <choose>
+            <when test="_orderBy != null and _orderBy != ''">
+                order by ${_orderBy}
+            </when>
+            <otherwise>
+                order by a.update_date desc
+            </otherwise>
+        </choose>
+    </select>
+
+
+
+    <delete id="realDelete">
+        delete from reg_model_info a
+        <where>
+            and a.id=#{id}
+        </where>
+    </delete>
+
+</mapper>

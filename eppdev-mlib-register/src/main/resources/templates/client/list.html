@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head(~{:: title})">
+    <title>Client列表</title>
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css"/>
+</head>
+<body>
+<nav th:replace="fragments/navbar :: navbar">navbar</nav>
+<div class="container">
+    <div th:insert="fragments/alert :: alert">alert</div>
+    <h3 class="text-left">Provider列表</h3>
+    <div>
+        <table class="table table-bordered table-sm table-striped">
+            <thead>
+            <tr>
+                <td class="text-center">序号</td>
+                <td class="text-center">实例名称</td>
+                <td class="text-center">地址</td>
+                <td class="text-center">模型数量</td>
+                <td class="text-center">心跳时间</td>
+                <td class="text-center">状态</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="provider,iterStat : ${providers}">
+                <td class="text-center" th:text="${iterStat.count}">1</td>
+                <td class="text-center" th:text="${provider.instanceName}">instanceName</td>
+                <td class="text-center">
+                    <a th:href="@{${provider.basicUrl} + '/info' }"><span th:text="${provider.basicUrl}">basicUrl</span></a>
+                </td>
+                <td class="text-center" th:text="${provider.modelCnt}">entity_name</td>
+                <td class="text-center" th:text="${#dates.format(provider.lastHeartBeatTime, 'MM-dd HH:mm:ss')}">yyyy-mm-dd</td>
+                <td class="text-center">
+                    <span th:if="${provider.status == 1}">正常</span>
+                    <span class="text-danger" th:if="${provider.status == 0}">【异常】</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3 class="text-left">Monitor列表</h3>
+    <div>
+        <table class="table table-bordered table-sm table-striped">
+            <thead>
+            <tr>
+                <td class="text-center">序号</td>
+                <td class="text-center">实例名称</td>
+                <td class="text-center">地址</td>
+                <td class="text-center">心跳时间</td>
+                <td class="text-center">状态</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="monitor,iterStat : ${monitors}">
+                <td class="text-center" th:text="${iterStat.count}">1</td>
+                <td class="text-center" th:text="${monitor.instanceName}">instanceName</td>
+                <td class="text-center">
+                    <a th:href="@{${monitor.basicUrl} + '/info' }"><span th:text="${monitor.basicUrl}">basicUrl</span></a>
+                </td>
+                <td class="text-center" th:text="${#dates.format(monitor.lastHeartBeatTime, 'MM-dd HH:mm:ss')}">yyyy-mm-dd</td>
+                <td class="text-center">
+                    <span th:if="${monitor.status == 1}">正常</span>
+                    <span class="text-danger" th:if="${monitor.status == 0}">【异常】</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <h3 class="text-left">Consumer列表</h3>
+    <div>
+        <table class="table table-bordered table-sm table-striped">
+            <thead>
+            <tr>
+                <td class="text-center">序号</td>
+                <td class="text-center">实例名称</td>
+                <td class="text-center">地址</td>
+                <td class="text-center">心跳时间</td>
+                <td class="text-center">状态</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="consumer,iterStat : ${consumers}">
+                <td class="text-center" th:text="${iterStat.count}">1</td>
+                <td class="text-center" th:text="${consumer.instanceName}">instanceName</td>
+                <td class="text-center">
+                    <a th:href="@{${consumer.basicUrl} + '/info' }"><span th:text="${consumer.basicUrl}">basicUrl</span></a>
+                </td>
+                <td class="text-center" th:text="${#dates.format(consumer.lastHeartBeatTime, 'MM-dd HH:mm:ss')}">yyyy-mm-dd</td>
+                <td class="text-center">
+                    <span th:if="${consumer.status == 1}">正常</span>
+                    <span class="text-danger" th:if="${consumer.status == 0}">【异常】</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div th:replace="fragments/footer :: copy"></div>
+</div>
+
+</body>
+</html>

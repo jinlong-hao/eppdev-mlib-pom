@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cn.eppdev.mlib</groupId>
+    <artifactId>eppdev-mlib-pom</artifactId>
+    <packaging>pom</packaging>
+    <version>0.1.0</version>
+
+
+    <licenses>
+        <license>
+            <name>Anti-996 License 1.0</name>
+            <url>https://github.com/996icu/996.ICU/blob/master/LICENSE</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>jinlong.hao</name>
+            <email>jinlong.hao@eppdev.cn</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com:eppdev/eppdev-mlib-pom.git</connection>
+        <developerConnection>scm:git:ssh://github.com:eppdev/eppdev-mlib-pom.git</developerConnection>
+        <url>http://github.com/eppdev/eppdev-mlib-pom/tree/master</url>
+    </scm>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.2.RELEASE</version>
+    </parent>
+
+    <modules>
+        <module>eppdev-mlib-register</module>
+        <module>eppdev-mlib-provider</module>
+        <module>eppdev-mlib-monitor</module>
+        <module>eppdev-mlib-basic-pom</module>
+        <module>eppdev-mlib-consumer</module>
+    </modules>
+
+    <properties>
+        <springboot.version>1.5.7.RELEASE</springboot.version>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jackson.version>2.9.8</jackson.version>
+        <commons-codec.version>1.10</commons-codec.version>
+        <commons-beanutils.version>1.9.1</commons-beanutils.version>
+        <commons-lang3.version>3.3.2</commons-lang3.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <junit.version>4.12</junit.version>
+        <pagehelper-spring-boot-starter.version>1.2.9</pagehelper-spring-boot-starter.version>
+        <mysql-connection.version>5.1.46</mysql-connection.version>
+        <druid.version>1.1.12</druid.version>
+        <ojdbc.version>10.2.0.4.0</ojdbc.version>
+        <jpmml.version>1.4.11</jpmml.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+
+            <!-- apache commons -->
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>1.9.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.5.6</version>
+            </dependency>
+            <!-- end of commons -->
+
+            <!-- version fo jackson -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <!-- end of jackson -->
+
+            <!-- for database -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connection.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.oracle</groupId>
+                <artifactId>ojdbc14</artifactId>
+                <version>${ojdbc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <!-- end of database -->
+
+            <!-- for eppdev-mlib -->
+            <dependency>
+                <groupId>cn.eppdev.mlib</groupId>
+                <artifactId>eppdev-mlib-basic-commons</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.eppdev.mlib</groupId>
+                <artifactId>eppdev-mlib-basic-orm</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- end of eppdev-mlib -->
+
+            <dependency>
+                <groupId>org.jpmml</groupId>
+                <artifactId>pmml-evaluator</artifactId>
+                <version>${jpmml.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jpmml</groupId>
+                <artifactId>pmml-evaluator-extension</artifactId>
+                <version>${jpmml.version}</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
+
+</project>

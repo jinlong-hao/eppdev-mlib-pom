@@ -1,0 +1,18 @@
+/* FileName: ConsumerService.java
+ * Copyright EPPDEV.CN(jinlong.hao@eppdev.cn)  All Rights Preserved!
+ * Licensed By ANTI-996 License v1.0
+ */
+
+package cn.eppdev.mlib.register.service;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+/**
+ * @author jinlong.hao
+ */
+@Service
+public class ConsumerService {
+    static Logger logger = LoggerFactory.getLogger(ConsumerService.class);
+}
